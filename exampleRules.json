@@ -1,0 +1,32 @@
+{
+    "rules": [{
+            "rule_id": "ruleId",
+            "checks": [{
+                    "key": "key1",
+                    "value": "value1",
+                    "operation": "equals"
+                },
+                {
+                    "key": "key2",
+                    "value": "value2",
+                    "operation": "equals"
+                }
+            ],
+            "assign": [{
+                    "read_attr": "values[*].{ContinentName:continent_name, Price:price,ImageUrl:imageurl,Location:location}",
+                    "write_attr": ", ContinentName, Price, ImageUrl, Location",
+                    "wrap": "site"
+                },
+                {
+					"read_attr": "values[*].value[*].{AgencyName:agency_name, AgencyPhoneNo:phone_no,AgencyAddress:agency_address}",
+                    "write_attr": "AgencyName,AgencyAddress,AgencyPhoneNo",
+                    "wrap": "agency"
+                    
+                }
+            ],
+            "create": [{
+                "status": "completed"
+            }]
+        }
+	]
+}
